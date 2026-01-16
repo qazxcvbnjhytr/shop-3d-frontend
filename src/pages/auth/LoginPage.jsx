@@ -1,0 +1,109 @@
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { LanguageContext } from "../../context/LanguageContext";
+import { Eye, EyeOff } from "lucide-react";
+import { useAuth } from "../../context/AuthContext.jsx";
+import "../../components/styles/LoginPage.css";
+
+export default function LoginPage() {
+  const { language, translations } = useContext(LanguageContext);
+  const t = translations?.[language]?.auth || {};
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    if (!email || !password) {
+      setError(t.fillAllFields || "Please fill all fields");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const data = await login(email, password);
+      
+      // Якщо успішно зайшли - перевіряємо роль
+      if (data.user.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/account");
+      }
+    } catch (err) {
+      console.error("Login Error:", err);
+      
+      // 🔥🔥🔥 ОСЬ ТУТ МАГІЯ 🔥🔥🔥
+      // Якщо сервер повернув 403 (Forbidden) - значить юзер у бані
+      if (err.response && err.response.status === 403) {
+        navigate("/banned"); // Кидаємо його на сторінку ганьби
+      } else {
+        // Інакше показуємо звичайну помилку (невірний пароль і т.д.)
+        setError(err.response?.data?.message || t.loginFailed || "Login failed");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleLogin}>
+        <h2>{t.login || "Login"}</h2>
+        {error && <div className="auth-error">{error}</div>}
+
+        <label htmlFor="email">{t.email || "Email"}</label>
+        <input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder={t.emailPlaceholder || "Enter your email"}
+        />
+
+        <label htmlFor="password">{t.password || "Password"}</label>
+        <div className="password-wrapper" style={{ position: "relative" }}>
+          <input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder={t.passwordPlaceholder || "Enter your password"}
+            style={{ paddingRight: "35px" }}
+          />
+          <span
+            className="password-toggle"
+            onClick={() => setShowPassword(!showPassword)}
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              cursor: "pointer",
+              color: "#555",
+            }}
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </span>
+        </div>
+
+        <button type="submit" disabled={loading}>
+          {loading ? t.loading || "Loading..." : t.login || "Login"}
+        </button>
+
+        <div className="auth-links">
+          <Link to="/auth/register">{t.register || "Register"}</Link>
+          <Link to="/auth/forgot-password">
+            {t.forgotPassword || "Forgot Password?"}
+          </Link>
+        </div>
+      </form>
+    </div>
+  );
+}

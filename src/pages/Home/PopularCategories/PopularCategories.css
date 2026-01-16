@@ -1,0 +1,100 @@
+.pc {
+  margin: 40px 0;
+}
+
+.pc__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.pc__h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #102e18;
+  margin: 0;
+}
+
+.pc__link {
+  color: #00bfae;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.pc__link:hover { opacity: 0.8; }
+
+.pc__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Трохи ширші плитки */
+  gap: 16px;
+}
+
+.pc__tile {
+  position: relative;
+  height: 180px; /* Збільшив висоту, щоб було видно фото */
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  
+  /* Налаштування фону */
+  background-color: #f0f2f1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  display: flex;
+  align-items: flex-end; /* Текст знизу */
+  justify-content: flex-start;
+  text-align: left;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.pc__tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+/* Затемнення поверх картинки */
+.pc__overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+  z-index: 1;
+  transition: opacity 0.3s;
+}
+
+.pc__tile:hover .pc__overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+.pc__content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  width: 100%;
+}
+
+.pc__title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff; /* Текст білий */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  margin-bottom: 4px;
+}
+
+.pc__hint {
+  font-size: 13px;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.pc__tile:hover .pc__hint {
+  opacity: 1;
+  transform: translateY(0);
+}

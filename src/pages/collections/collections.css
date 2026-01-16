@@ -1,0 +1,54 @@
+/* client/src/pages/collections/collections.css */
+.cls-page {
+  background-color: #f9fafb;
+  min-height: 100vh;
+  padding-bottom: 80px;
+  font-family: "Inter", sans-serif;
+}
+
+.cls-hero {
+  background-color: #111;
+  color: #fff;
+  padding: 120px 20px 80px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.cls-title {
+  font-size: 56px;
+  font-weight: 800;
+  margin: 0 0 20px;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.cls-sub {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cls-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.cls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); /* Широкі картки */
+  gap: 40px;
+}
+
+.cls-state {
+  text-align: center;
+  padding: 60px;
+  color: #999;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .cls-title { font-size: 36px; }
+  .cls-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,84 @@
+.cc-card {
+  display: block;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 16/9; /* Кінематографічний формат */
+  text-decoration: none;
+  background: #000;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cc-card:hover {
+  transform: scale(0.98);
+}
+
+.cc-media {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.cc-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+  opacity: 0.9;
+}
+
+.cc-card:hover .cc-media img {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.cc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 60%);
+  z-index: 1;
+}
+
+.cc-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  z-index: 2;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cc-badge {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(5px);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.cc-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  text-transform: capitalize;
+  line-height: 1.1;
+}
+
+.cc-link {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.cc-card:hover .cc-link {
+  opacity: 1;
+  transform: translateX(5px);
+}

@@ -1,0 +1,234 @@
+/* --- Variables --- */
+.product-page {
+  --c-accent: #2ecc71;       /* Колір кнопки купити (зелений стимулює) */
+  --c-accent-hover: #27ae60;
+  --c-dark: #1e272e;
+  --c-gray: #808e9b;
+  --c-light: #f1f2f6;
+  --c-3d: #3498db;           /* Колір кнопки 3D */
+  
+  --shadow-card: 0 8px 24px rgba(0,0,0,0.06);
+  --radius-lg: 20px;
+  --radius-sm: 12px;
+
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 24px 60px;
+  color: var(--c-dark);
+}
+
+/* --- Navigation --- */
+.pp-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.pp-back-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--c-gray);
+  transition: 0.2s;
+}
+.pp-back-btn:hover { color: var(--c-dark); }
+
+/* --- Main Grid --- */
+.pp-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* Галерея ширша */
+  gap: 60px;
+}
+
+/* Gallery Sticky */
+.pp-gallery-sticky {
+  position: sticky;
+  top: 20px; /* Тримає галерею при скролі */
+}
+
+/* --- Info Column --- */
+.pp-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+.status-badge.instock { color: var(--c-accent); }
+.status-badge.outstock { color: #e74c3c; }
+
+.pp-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.pp-reviews-link {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--c-gray);
+  font-size: 0.95rem;
+  margin-left: 8px;
+}
+
+/* --- Action Card (Buy Box) --- */
+.pp-action-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  margin: 24px 0;
+}
+
+.pp-price-block {
+  margin-bottom: 20px;
+}
+
+.pp-current-price {
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+.pp-old-price {
+  text-decoration: line-through;
+  color: var(--c-gray);
+  font-size: 1.1rem;
+  display: block;
+}
+
+.pp-discount-tag {
+  background: #ff7675;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.pp-buttons-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 3D Button Style */
+.pp-3d-btn {
+  width: 100%;
+  padding: 14px;
+  border: 2px dashed var(--c-3d); /* Пунктир підкреслює "віртуальність" */
+  border-radius: var(--radius-sm);
+  background: rgba(52, 152, 219, 0.05);
+  color: var(--c-3d);
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: 0.2s;
+}
+.pp-3d-btn:hover { background: rgba(52, 152, 219, 0.1); }
+.icon-3d { font-size: 1.2rem; animation: spin 10s linear infinite; }
+
+/* Trust Badges */
+.pp-trust-badges {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 20px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--c-gray);
+  font-weight: 500;
+}
+
+/* --- Colors & Specs --- */
+.pp-color-picker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.color-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px #ddd;
+  cursor: pointer;
+}
+.color-dot.active { box-shadow: 0 0 0 2px var(--c-dark); }
+
+/* --- Tabs --- */
+.pp-tabs-section {
+  margin-top: 80px;
+}
+
+.pp-tabs-header {
+  display: flex;
+  gap: 40px;
+  border-bottom: 2px solid #eee;
+}
+
+.pp-tab-btn {
+  background: none;
+  border: none;
+  padding: 16px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--c-gray);
+  cursor: pointer;
+  position: relative;
+}
+
+.pp-tab-btn.active {
+  color: var(--c-dark);
+}
+.pp-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--c-dark);
+}
+
+.pp-tab-content {
+  padding: 40px 0;
+}
+
+/* Animations */
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Mobile */
+@media (max-width: 960px) {
+  .pp-grid { grid-template-columns: 1fr; gap: 32px; }
+  .pp-gallery-sticky { position: static; }
+  .pp-title { font-size: 1.8rem; }
+}

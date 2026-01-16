@@ -1,0 +1,388 @@
+/* client/src/admin/pages/AdminProducts.css */
+
+:root {
+  --ap-bg: #f3f4f6;
+  --ap-surface: #ffffff;
+  --ap-border: #e5e7eb;
+  --ap-text-primary: #111827;
+  --ap-text-secondary: #6b7280;
+  --ap-primary: #3b82f6;
+  --ap-primary-hover: #2563eb;
+  --ap-danger: #ef4444;
+  --ap-success: #10b981;
+  --ap-warning: #f59e0b;
+  --ap-radius: 8px;
+  --ap-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.ap-container {
+  padding: 2rem;
+  background-color: var(--ap-bg);
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* --- Header & Toolbar --- */
+.ap-headerWrapper {
+  margin-bottom: 2rem;
+}
+
+.ap-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  background: var(--ap-surface);
+  padding: 1rem;
+  border-radius: var(--ap-radius);
+  box-shadow: var(--ap-shadow);
+}
+
+.ap-searchBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ap-bg);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  width: 300px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.ap-searchBox:focus-within {
+  border-color: var(--ap-primary);
+  background: var(--ap-surface);
+}
+
+.ap-searchIcon {
+  color: var(--ap-text-secondary);
+}
+
+.ap-searchBox input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.ap-stats {
+  font-size: 0.85rem;
+  color: var(--ap-text-secondary);
+  font-weight: 500;
+}
+
+/* --- Buttons --- */
+.ap-btnPrimary {
+  background-color: var(--ap-primary);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--ap-radius);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+
+.ap-btnPrimary:hover {
+  background-color: var(--ap-primary-hover);
+}
+
+.ap-btnText {
+  background: none;
+  border: none;
+  color: var(--ap-text-secondary);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+.ap-btnText:hover {
+  color: var(--ap-text-primary);
+}
+
+/* --- Table Styles --- */
+.ap-tableCard {
+  background: var(--ap-surface);
+  border-radius: var(--ap-radius);
+  box-shadow: var(--ap-shadow);
+  overflow: hidden; /* For rounded corners */
+}
+
+/* Overriding typical DataTable generic styles if needed */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background-color: #f9fafb;
+  color: var(--ap-text-secondary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--ap-border);
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--ap-border);
+  transition: background 0.1s;
+}
+
+tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+/* --- Product Cell --- */
+.ap-productCell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ap-thumbWrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ap-border);
+}
+
+.ap-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ap-thumbPlaceholder {
+  color: var(--ap-text-secondary);
+  font-size: 1.5rem;
+}
+
+.ap-prodTitle {
+  font-weight: 600;
+  color: var(--ap-text-primary);
+  font-size: 0.95rem;
+}
+
+.ap-catBadge {
+  display: inline-block;
+  font-size: 0.75rem;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.ap-subCat {
+  font-size: 0.75rem;
+  color: var(--ap-text-secondary);
+}
+
+/* --- Pricing --- */
+.ap-priceCell {
+  display: flex;
+  flex-direction: column;
+}
+
+.ap-currentPrice {
+  font-weight: 600;
+  color: var(--ap-text-primary);
+}
+
+.ap-oldPriceWrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+}
+
+.ap-oldPrice {
+  text-decoration: line-through;
+  color: var(--ap-text-secondary);
+}
+
+.ap-discountBadge {
+  color: var(--ap-danger);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* --- Stock --- */
+.ap-stockStatus {
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ap-stockStatus::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.ap-stockStatus.ok { color: var(--ap-success); }
+.ap-stockStatus.ok::before { background-color: var(--ap-success); }
+
+.ap-stockStatus.low { color: var(--ap-warning); }
+.ap-stockStatus.low::before { background-color: var(--ap-warning); }
+
+.ap-stockStatus.out { color: var(--ap-text-secondary); }
+.ap-stockStatus.out::before { background-color: var(--ap-text-secondary); }
+
+.ap-stockQty {
+  font-size: 0.8rem;
+  color: var(--ap-text-secondary);
+  margin-top: 2px;
+}
+
+/* --- Status Badge --- */
+.ap-statusBadge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.ap-statusBadge.active {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.ap-statusBadge.archived {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+/* --- Actions --- */
+.ap-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.ap-iconBtn {
+  background: white;
+  border: 1px solid var(--ap-border);
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ap-text-secondary);
+  transition: all 0.2s;
+}
+
+.ap-iconBtn:hover {
+  background: #f9fafb;
+  color: var(--ap-primary);
+  border-color: var(--ap-primary);
+}
+
+.ap-iconBtn.delete:hover {
+  color: var(--ap-danger);
+  border-color: var(--ap-danger);
+}
+
+/* --- Form / Modal --- */
+.ap-formSection {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--ap-border);
+}
+
+.ap-formSection h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: var(--ap-text-primary);
+    border-bottom: 1px solid var(--ap-border);
+    padding-bottom: 0.5rem;
+}
+
+.ap-formGrid {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.ap-imgGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ap-imgItem {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border: 1px solid var(--ap-border);
+}
+
+.ap-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ap-imgRemove {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ap-imgRemove:hover {
+    background: var(--ap-danger);
+}
+
+/* Utilities for rows */
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+.ap-mt { margin-top: 1rem; }
+
+/* Custom Scrollbar for form */
+.ap-formGrid::-webkit-scrollbar {
+    width: 6px;
+}
+.ap-formGrid::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
